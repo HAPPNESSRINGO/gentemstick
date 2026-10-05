@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gentemstick 玄天</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;800&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eceeed;--ink:#1c1e20;--mute:#5d6366;--line:#c9cecf;--red:#c9231b;
+--serif:"Shippori Mincho B1","Noto Serif SC","Songti SC",serif;
+--sans:"Zen Kaku Gothic New","Noto Sans SC","PingFang SC",sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15171a;--ink:#e8eae9;--mute:#9aa1a4;--line:#33383b}}
+:root[data-theme="dark"]{--bg:#15171a;--ink:#e8eae9;--mute:#9aa1a4;--line:#33383b}
+html{scroll-padding-top:64px;scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.85 var(--sans)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+nav div{max-width:760px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:20px;height:52px}
+nav .brand{font-family:var(--serif);font-weight:800;margin-right:auto}
+nav a{text-decoration:none;color:var(--mute);font-size:15px}
+nav a:hover{color:var(--ink)}
+button{font:inherit;color:inherit;cursor:pointer}
+.theme{background:none;border:1px solid var(--line);border-radius:50%;width:32px;height:32px;line-height:1;padding:0}
+main{max-width:760px;margin:0 auto;padding:0 24px 96px}
+section{padding:72px 0 0}
+h1,h2{font-family:var(--serif);font-weight:800;line-height:1.25;margin:0 0 20px}
+h1{font-size:clamp(44px,12vw,84px);letter-spacing:.02em}
+h2{font-size:clamp(26px,5.5vw,34px)}
+p{margin:0 0 1.1em;max-width:34em}
+.hero{padding-top:56px}
+.jp{font-family:var(--serif);font-weight:500;font-size:clamp(20px,4vw,26px);color:var(--mute);margin:0 0 28px}
+.lede{font-size:19px}
+.btn{display:inline-block;margin-top:8px;padding:10px 20px;border:1px solid var(--ink);border-radius:999px;text-decoration:none;font-size:15px}
+.btn:hover{background:var(--ink);color:var(--bg)}
+.board{display:block;width:100%;height:auto;margin:20px 0 8px;color:var(--ink)}
+.board path{transition:opacity .2s}
+.board .eye{fill:var(--red)}
+.picker{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.picker button{background:none;border:1px solid var(--line);border-radius:999px;padding:8px 18px;font-size:16px}
+.picker button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.picker button:focus-visible,.theme:focus-visible,summary:focus-visible,.btn:focus-visible,nav a:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+#desc{min-height:3.7em}
+.cap{font-size:14px;color:var(--mute);margin:0}
+.shapes{margin-top:28px;border-top:1px solid var(--line)}
+.shapes div{padding:18px 0;border-bottom:1px solid var(--line)}
+.shapes b{font-family:var(--serif);font-size:19px;display:block}
+.shapes span{color:var(--mute)}
+details{border-bottom:1px solid var(--line)}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;font-family:var(--serif);font-size:24px;font-weight:800}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--sans);font-weight:400;color:var(--mute);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg);color:var(--red)}
+details p{color:var(--mute);margin-bottom:18px}
+.note{font-size:14px;color:var(--mute);margin-top:56px;padding-top:20px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<nav><div>
+<span class="brand">玄天</span>
+<a href="#shape">板型</a><a href="#history">历史</a><a href="#niseko">展示厅</a>
+<button class="theme" id="theme" aria-label="切换深浅色">◐</button>
+</div></nav>
+<main>
+<section class="hero">
+<p class="jp">玄天</p>
+<h1>Gentemstick</h1>
+<p class="lede">来自北海道二世谷的手工雪板品牌。它不把雪板当成竞技器材，而是当成在雪山上画出一条漂亮线条的工具。</p>
+<a class="btn" href="http://www.gentemstick.com" target="_blank" rel="noopener">访问官网</a>
+</section>
+
+<section id="shape">
+<h2>点一下，换个板尾</h2>
+<p>品牌认为形状是雪板设计里最重要的因素。选一种尾型，看看板的轮廓怎么变。</p>
+<svg class="board" id="svg" viewBox="0 0 620 120" role="img" aria-label="雪板侧影示意图">
+<path id="body" fill="currentColor"/>
+<circle class="eye" cx="440" cy="60" r="6"/>
+</svg>
+<div class="picker" id="picker"></div>
+<p id="desc" aria-live="polite"></p>
+<p class="cap">示意图，并非具体型号。多数板型为单向粉雪板：板头宽而尖，板尾较窄。</p>
+<div class="shapes">
+<div><b>宽而尖的板头</b><span>在深雪里让板头浮起来，不容易被雪吃住。</span></div>
+<div><b>较窄的板尾</b><span>配合板头，让板在粉雪中顺势下沉、转向。</span></div>
+</div>
+</section>
+
+<section id="history">
+<h2>点开看历史</h2>
+<details open><summary>1990</summary><p>推出第一块受冲浪启发的雪板。创始人玉井太朗是资深冲浪者，想找回当年被称为“雪上冲浪”的滑法。</p></details>
+<details><summary>1998</summary><p>玉井太朗正式创立 Gentemstick 品牌。他的说法是，想做自己想骑的板，也想留住一种快要消失的文化。名字来自日语“玄天”，指北方天空中绝对的存在。</p></details>
+<details><summary>2018</summary><p>在二世谷的 Hanazono 308 雪场基地木屋举办二十周年庆典，并放映了二十周年纪念影片。如今世界各地的厂商都在做受它启发的粉雪板型。</p></details>
+</section>
+
+<section id="niseko">
+<h2>二世谷的展示厅</h2>
+<p>展示厅兼咖啡馆，也是玉井太朗居住的地方，被雪上冲浪圈称作圣地。据《The Surfer’s Journal》报道，这里每天中午才开门，好让员工上午先去滑雪。</p>
+<p class="note">内容整理自品牌访谈、二世谷当地媒体和《The Surfer’s Journal》等公开报道。具体板型和价格请以官方渠道为准。</p>
+</section>
+</main>
+<script>
+(function(){
+var head="M590 60C560 20 490 16 420 18C320 22 160 34 ";
+var tail="C160 86 320 98 420 102C490 104 560 100 590 60Z";
+var T={
+"燕尾":{d:head+"60 40L96 60L60 80"+tail,t:"传统的分叉尾，也是品牌沿用的经典设计之一。"},
+"鱼尾":{d:head+"36 32L102 60L36 88"+tail,t:"分叉更深更宽，像鱼的尾鳍，在粉雪板上很常见。"},
+"圆尾":{d:head+"70 38C38 46 38 74 70 82"+tail,t:"圆弧收尾，一般来说转弯时的过渡更柔和。"},
+"方尾":{d:head+"58 40L58 80"+tail,t:"平直收尾，板尾的轮廓最干净利落。"}
+};
+var body=document.getElementById("body"),desc=document.getElementById("desc"),pk=document.getElementById("picker");
+function pick(k){
+body.style.opacity=0;
+setTimeout(function(){body.setAttribute("d",T[k].d);body.style.opacity=1},120);
+desc.textContent=k+"：" +T[k].t;
+[].forEach.call(pk.children,function(b){b.setAttribute("aria-pressed",b.textContent===k)});
+}
+Object.keys(T).forEach(function(k){
+var b=document.createElement("button");b.textContent=k;b.onclick=function(){pick(k)};pk.appendChild(b);
+});
+body.setAttribute("d",T["燕尾"].d);pick("燕尾");
+document.getElementById("theme").onclick=function(){
+var r=document.documentElement,dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;
+r.dataset.theme=dark?"light":"dark";
+};
+})();
+</script>
+</body>
+</html>
