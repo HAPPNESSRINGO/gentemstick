@@ -1,5 +1,6 @@
 # gentemstick
 Gentemstick 玄天网页。
+哈哈哈
 
 ## 发布方式（GitHub Pages）
 
